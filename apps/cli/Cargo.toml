@@ -9,4 +9,6 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+anyhow.workspace = true
+clap.workspace = true
 domain.workspace = true
