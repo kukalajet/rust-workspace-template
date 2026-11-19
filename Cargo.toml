@@ -11,6 +11,9 @@ publish = false
 [workspace.dependencies]
 domain = { path = "crates/domain" }
 
+# external
+thiserror = "2.0.21"
+
 [workspace.lints.rust]
 unsafe_code = "forbid"
 
