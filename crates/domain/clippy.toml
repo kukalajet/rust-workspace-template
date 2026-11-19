@@ -1,0 +1,39 @@
+# Clippy uses the nearest clippy.toml and does NOT merge with the root one,
+# so the test exemptions must be repeated here.
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-panic-in-tests = true
+
+disallowed-methods = [
+    { path = "std::time::SystemTime::now", reason = "domain is pure: take time as an argument or via a Clock service" },
+    { path = "std::time::Instant::now", reason = "domain is pure: take time as an argument or via a Clock service" },
+    { path = "std::env::var", reason = "domain is pure: config is loaded by the app and passed in" },
+    { path = "std::env::var_os", reason = "domain is pure: config is loaded by the app and passed in" },
+    { path = "std::env::vars", reason = "domain is pure: config is loaded by the app and passed in" },
+    { path = "std::env::args", reason = "domain is pure: arguments are parsed by the app" },
+    { path = "std::fs::read", reason = "domain is pure: file I/O belongs in an adapter" },
+    { path = "std::fs::read_to_string", reason = "domain is pure: file I/O belongs in an adapter" },
+    { path = "std::fs::write", reason = "domain is pure: file I/O belongs in an adapter" },
+    { path = "std::io::stdin", reason = "domain is pure: terminal I/O belongs in an app" },
+    { path = "std::io::stdout", reason = "domain is pure: terminal I/O belongs in an app" },
+    { path = "std::io::stderr", reason = "domain is pure: terminal I/O belongs in an app" },
+    { path = "std::thread::spawn", reason = "domain is pure: concurrency is decided by the app" },
+    { path = "std::thread::sleep", reason = "domain is pure: waiting is an effect" },
+    { path = "std::process::exit", reason = "domain is pure: return an error instead" },
+]
+
+disallowed-types = [
+    { path = "std::fs::File", reason = "domain is pure: file I/O belongs in an adapter" },
+    { path = "std::fs::OpenOptions", reason = "domain is pure: file I/O belongs in an adapter" },
+    { path = "std::net::TcpStream", reason = "domain is pure: network I/O belongs in an adapter" },
+    { path = "std::net::TcpListener", reason = "domain is pure: network I/O belongs in an adapter" },
+    { path = "std::net::UdpSocket", reason = "domain is pure: network I/O belongs in an adapter" },
+    { path = "std::process::Command", reason = "domain is pure: spawning processes is an effect" },
+]
+
+disallowed-macros = [
+    { path = "std::print", reason = "domain is pure: output belongs in an app" },
+    { path = "std::println", reason = "domain is pure: output belongs in an app" },
+    { path = "std::eprint", reason = "domain is pure: output belongs in an app" },
+    { path = "std::eprintln", reason = "domain is pure: output belongs in an app" },
+]
