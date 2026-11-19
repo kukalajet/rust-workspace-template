@@ -9,3 +9,9 @@ publish.workspace = true
 workspace = true
 
 [dependencies]
+anyhow.workspace = true
+axum.workspace = true
+domain.workspace = true
+serde.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
