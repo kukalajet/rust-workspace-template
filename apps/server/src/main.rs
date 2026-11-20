@@ -1,6 +1,3 @@
-mod error;
-mod routes;
-
 use anyhow::{Context, Result};
 use tokio::net::TcpListener;
 
@@ -14,7 +11,7 @@ async fn main() -> Result<()> {
 
     println!("listening on http://{ADDRESS}");
 
-    axum::serve(listener, routes::router())
+    axum::serve(listener, server::router())
         .with_graceful_shutdown(shutdown_signal())
         .await
         .context("server error")?;

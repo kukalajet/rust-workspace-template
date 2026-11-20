@@ -5,7 +5,7 @@ use axum::{
 use domain::model::Email;
 use serde::{Deserialize, Serialize};
 
-use crate::error::ApiError;
+use crate::{error::ApiError, extract::ApiJson};
 
 /// All HTTP routes of the server.
 pub fn router() -> Router {
@@ -29,7 +29,7 @@ struct ValidateEmailResponse {
 }
 
 async fn validate_email(
-    Json(body): Json<ValidateEmailRequest>,
+    ApiJson(body): ApiJson<ValidateEmailRequest>,
 ) -> Result<Json<ValidateEmailResponse>, ApiError> {
     let email = Email::parse(&body.email)?;
 
