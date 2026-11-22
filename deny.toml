@@ -1,0 +1,34 @@
+# cargo-deny: checks the whole dependency graph.
+# Docs: https://embarkstudios.github.io/cargo-deny/
+
+[graph]
+all-features = true
+
+[advisories]
+# Fail on crates with known security vulnerabilities or that are unmaintained.
+ignore = []
+
+[licenses]
+# Only these licenses may appear in the dependency graph.
+allow = [
+    "Apache-2.0",
+    "BSD-3-Clause",
+    "MIT",
+    "Unicode-3.0",
+]
+confidence-threshold = 0.8
+
+# Our own crates are not published (publish = false), so they need no license.
+[licenses.private]
+ignore = true
+
+[bans]
+multiple-versions = "warn"
+# `*` version requirements are not allowed, except path deps of private crates.
+wildcards = "deny"
+allow-wildcard-paths = true
+
+[sources]
+# Only crates.io; no unknown registries or git repositories.
+unknown-registry = "deny"
+unknown-git = "deny"
