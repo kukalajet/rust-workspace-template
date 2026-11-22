@@ -1,4 +1,7 @@
 use anyhow::{Context, Result};
+use memory::InMemoryUserRepository;
+use server::AppState;
+use system::SystemClock;
 use tokio::net::TcpListener;
 
 const ADDRESS: &str = "127.0.0.1:3000";
@@ -11,7 +14,13 @@ async fn main() -> Result<()> {
 
     println!("listening on http://{ADDRESS}");
 
-    axum::serve(listener, server::router())
+    // The composition root: choose the real adapters for every service.
+    let state = AppState {
+        user_repository: InMemoryUserRepository::default(),
+        clock: SystemClock,
+    };
+
+    axum::serve(listener, server::router(state))
         .with_graceful_shutdown(shutdown_signal())
         .await
         .context("server error")?;

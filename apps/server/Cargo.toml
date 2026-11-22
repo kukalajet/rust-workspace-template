@@ -12,7 +12,9 @@ workspace = true
 anyhow.workspace = true
 axum.workspace = true
 domain.workspace = true
+memory.workspace = true
 serde.workspace = true
+system.workspace = true
 thiserror.workspace = true
 tokio.workspace = true
 

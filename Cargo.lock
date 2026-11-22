@@ -362,6 +362,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cf8baf1c55e62ffcace7a9f06f4bd9cd3f0c4beb022d3b367256b91b87513d98"
 
 [[package]]
+name = "memory"
+version = "0.1.0"
+dependencies = [
+ "domain",
+ "tokio",
+]
+
+[[package]]
 name = "mime"
 version = "0.3.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -500,8 +508,10 @@ dependencies = [
  "axum",
  "domain",
  "http-body-util",
+ "memory",
  "serde",
  "serde_json",
+ "system",
  "thiserror",
  "tokio",
  "tower",
@@ -572,6 +582,13 @@ name = "sync_wrapper"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0bf256ce5efdfa370213c1dabab5935a12e49f2c58d15e9eac2870d3b4f27263"
+
+[[package]]
+name = "system"
+version = "0.1.0"
+dependencies = [
+ "domain",
+]
 
 [[package]]
 name = "thiserror"
